@@ -1,4 +1,4 @@
-package com.adobe.phonegap.push;
+package ventures.paramount.phonegap.notificationhub;
 
 import java.io.IOException;
 import java.io.InputStream;

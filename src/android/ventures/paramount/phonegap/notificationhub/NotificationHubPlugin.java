@@ -1,4 +1,4 @@
-package com.adobe.phonegap.push;
+package ventures.paramount.phonegap.notificationhub;
 
 import android.app.NotificationManager;
 import android.content.Context;
@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 import java.util.Iterator;
 
-public class PushPlugin extends CordovaPlugin {
+public class NotificationHubPlugin extends CordovaPlugin {
     public static final String VENTURES_PARAMOUNT_PHONEGAP_NOTIFICATIONHUB = "ventures.paramount.phonegap.notificationhub";
 
     public static final String LOG_TAG = "NotificationHubPlugin";

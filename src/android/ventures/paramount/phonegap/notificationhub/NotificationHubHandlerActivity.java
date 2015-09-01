@@ -1,4 +1,4 @@
-package com.adobe.phonegap.push;
+package ventures.paramount.phonegap.notificationhub;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -8,9 +8,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
-public class PushHandlerActivity extends Activity
+public class NotificationHubHandlerActivity extends Activity
 {
-	private static String LOG_TAG = "PushPlugin_PushHandlerActivity";
+	private static String LOG_TAG = "NotificationHubPlugin_NotificationHubHandlerActivity";
 
 	/*
 	 * this activity will be started if the user touches a notification that we own.
