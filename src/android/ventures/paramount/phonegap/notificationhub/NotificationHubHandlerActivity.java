@@ -25,7 +25,7 @@ public class NotificationHubHandlerActivity extends Activity
 		super.onCreate(savedInstanceState);
 		Log.v(LOG_TAG, "onCreate");
 
-        boolean isPushPluginActive = PushPlugin.isActive();
+        boolean isPushPluginActive = NotificationHubPlugin.isActive();
         processPushBundle(isPushPluginActive);
 
         finish();
