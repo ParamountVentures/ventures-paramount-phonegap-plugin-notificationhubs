@@ -153,7 +153,7 @@ public class NotificationHubPlugin extends CordovaPlugin {
         super.onPause(multitasking);
         gForeground = false;
 
-        SharedPreferences prefs = getApplicationContext().getSharedPreferences(PushPlugin.VENTURES_PARAMOUNT_PHONEGAP_NOTIFICATIONHUB, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences(NotificationHubPlugin.VENTURES_PARAMOUNT_PHONEGAP_NOTIFICATIONHUB, Context.MODE_PRIVATE);
         if (prefs.getBoolean("clearNotifications", true)) {
             final NotificationManager notificationManager = (NotificationManager) cordova.getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.cancelAll();
