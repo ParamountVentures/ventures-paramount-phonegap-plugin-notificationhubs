@@ -36,7 +36,7 @@ import java.util.ArrayList;
 @SuppressLint("NewApi")
 public class GCMIntentService extends GCMBaseIntentService {
 
-    private static final String LOG_TAG = "PushPlugin_GCMIntentService";
+    private static final String LOG_TAG = "NotificationHubPlugin_GCMIntentService";
     private static final String STYLE_INBOX = "inbox";
     private static final String STYLE_PICTURE = "picture";
     private static final String STYLE_TEXT = "text";
@@ -65,7 +65,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 
             Log.v(LOG_TAG, "onRegistered: " + json.toString());
 
-            PushPlugin.sendEvent( json );
+            NotificationHubPlugin.sendEvent( json );
         }
         catch(JSONException e) {
             // No message to the user is sent, JSON failed
@@ -86,9 +86,9 @@ public class GCMIntentService extends GCMBaseIntentService {
         Bundle extras = intent.getExtras();
         if (extras != null) {
             // if we are in the foreground, just surface the payload, else post it to the statusbar
-            if (PushPlugin.isInForeground()) {
+            if (NotificationHubPlugin.isInForeground()) {
                 extras.putBoolean("foreground", true);
-                PushPlugin.sendExtras(extras);
+                NotificationHubPlugin.sendExtras(extras);
             }
             else {
                 extras.putBoolean("foreground", false);
@@ -108,7 +108,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         String packageName = context.getPackageName();
         Resources resources = context.getResources();
 
-        Intent notificationIntent = new Intent(this, PushHandlerActivity.class);
+        Intent notificationIntent = new Intent(this, NotificationHubHandlerActivity.class);
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         notificationIntent.putExtra("pushBundle", extras);
 
@@ -123,7 +123,7 @@ public class GCMIntentService extends GCMBaseIntentService {
                 .setContentIntent(contentIntent)
                 .setAutoCancel(true);
 
-        SharedPreferences prefs = context.getSharedPreferences(PushPlugin.COM_ADOBE_PHONEGAP_PUSH, Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(NotificationHubPlugin.VENTURES_PARAMOUNT_PHONEGAP_NOTIFICATIONHUB, Context.MODE_PRIVATE);
         String localIcon = prefs.getString("icon", null);
         String localIconColor = prefs.getString("iconColor", null);
         boolean soundOption = prefs.getBoolean("sound", true);
@@ -214,7 +214,7 @@ public class GCMIntentService extends GCMBaseIntentService {
                     Log.d(LOG_TAG, "adding action");
                     JSONObject action = actionsArray.getJSONObject(i);
                     Log.d(LOG_TAG, "adding callback = " + action.getString("callback"));
-                    Intent intent = new Intent(this, PushHandlerActivity.class);
+                    Intent intent = new Intent(this, NotificationHubHandlerActivity.class);
                     intent.putExtra("callback", action.getString("callback"));
                     intent.putExtra("pushBundle", extras);
                     PendingIntent pIntent = PendingIntent.getActivity(this, i, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -415,8 +415,8 @@ public class GCMIntentService extends GCMBaseIntentService {
     public void onError(Context context, String errorId) {
         Log.e(LOG_TAG, "onError - errorId: " + errorId);
         // if we are in the foreground, just send the error
-        if (PushPlugin.isInForeground()) {
-            PushPlugin.sendError(errorId);
+        if (NotificationHubPlugin.isInForeground()) {
+            NotificationHubPlugin.sendError(errorId);
         }
     }
 

@@ -13,7 +13,7 @@ public class CordovaGCMBroadcastReceiver extends GCMBroadcastReceiver {
 	
 	@Override
 	protected String getGCMIntentServiceClassName(Context context) {
-    	return "com.adobe.phonegap.push" + DEFAULT_INTENT_SERVICE_CLASS_NAME;
+    	return "ventures.paramount.phonegap.notificationhub" + DEFAULT_INTENT_SERVICE_CLASS_NAME;
     }
 	
 }

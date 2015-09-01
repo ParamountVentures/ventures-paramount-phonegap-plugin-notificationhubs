@@ -49,7 +49,7 @@ public class NotificationHubHandlerActivity extends Activity
             originalExtras.putBoolean("coldstart", !isPushPluginActive);
             originalExtras.putString("callback", getIntent().getExtras().getString("callback"));
 
-			PushPlugin.sendExtras(originalExtras);
+			NotificationHubPlugin.sendExtras(originalExtras);
 		}
 	}
 
