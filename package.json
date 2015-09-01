@@ -1,0 +1,44 @@
+{
+    "name": "phonegap-plugin-notificationhub",
+    "description": "Register and receive notifications from Azure Notification Hubs.",
+    "version": "1.0.0",
+    "homepage": "http://github.com/paramountventures/phonegap-plugin-notificationhub#readme",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/paramountventures/phonegap-plugin-notificationhub.git"
+    },
+    "bugs": {
+        "url": "https://github.com/paramountventures/phonegap-plugin-notificationhub/issues"
+    },
+    "cordova": {
+        "id": "phonegap-plugin-notificationhub",
+        "platforms": [
+            "ios",
+            "android",
+            "windows",
+            "browser"
+        ]
+    },
+    "keywords": [
+        "ecosystem:cordova",
+        "ecosystem:phonegap",
+        "cordova-ios",
+        "cordova-android",
+        "cordova-windows",
+        "cordova-browser"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0.0"
+        }
+    ],
+    "author": "Paramount Ventures",
+    "license": "APL",
+    "scripts": {
+        "test": "jasmine-node --color spec"
+    },
+    "devDependencies": {
+        "jasmine-node": "1.14.5"
+    }
+}
