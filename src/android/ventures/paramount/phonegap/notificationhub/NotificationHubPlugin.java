@@ -128,7 +128,19 @@ public class NotificationHubPlugin extends CordovaPlugin {
 
         } else if (UNREGISTER.equals(action)) {
 
-            GCMRegistrar.unregister(getApplicationContext());
+            JSONObject jo = null;
+            jo = data.getJSONObject(0).getJSONObject("android");
+            hubName = jo.getString("notificationHubPath");
+            connectionString = jo.getString("connectionString");
+
+            final com.microsoft.windowsazure.messaging.NotificationHub hub =
+                    new com.microsoft.windowsazure.messaging.NotificationHub(hubName, connectionString, cordova.getActivity());
+
+            // get an instance of the messaging cloud
+            //final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(cordova.getActivity());
+
+            //GCMRegistrar.unregister(getApplicationContext());
+            hub.unregister();
 
             Log.v(LOG_TAG, "UNREGISTER");
             result = true;
