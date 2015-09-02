@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-//import com.google.android.gcm.GCMRegistrar;
+import com.microsoft.windowsazure.messaging.NativeRegistration;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
