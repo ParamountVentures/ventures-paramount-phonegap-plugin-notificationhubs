@@ -7,13 +7,16 @@
 var exec = cordova.require('cordova/exec');
 
 /**
- * PushNotification constructor.
+ * NotificationHub constructor.
+ * Initializes a new instance of the NotificationHub class.
+ * http://msdn.microsoft.com/en-us/library/microsoft.windowsazure.messaging.notificationhub.notificationhub.aspx
  *
- * @param {Object} options to initiate Push Notifications.
+ * @param {string} notificationHubPath The notification hub path (name).
+ * @param {string} connectionString The connection string.
+ * @param {string} options Platform specific additional parameters (optional).
  * @return {NotificationHub} instance that can be monitored and cancelled.
  */
-
-var NotificationHub = function(options) {
+var NotificationHub = function(notificationHubPath, connectionString, options) {
     this._handlers = {
         'registration': [],
         'notification': [],
@@ -58,7 +61,7 @@ var NotificationHub = function(options) {
 
     // wait at least one process tick to allow event subscriptions
     setTimeout(function() {
-        exec(success, fail, 'NotificationHub', 'init', [options]);
+        exec(success, fail, 'NotificationHub', 'init', [notificationHubPath, connectionString, options]);
     }, 10);
 };
 
@@ -66,7 +69,7 @@ var NotificationHub = function(options) {
  * Unregister from push notifications
  */
 
-NotificationHub.prototype.unregister = function(successCallback, errorCallback, options) {
+NotificationHub.prototype.unregister = function(successCallback, errorCallback, notificationHubPath, connectionString, options) {
     if (errorCallback == null) { errorCallback = function() {}}
 
     if (typeof errorCallback != "function")  {
@@ -79,7 +82,7 @@ NotificationHub.prototype.unregister = function(successCallback, errorCallback, 
         return
     }
 
-    exec(successCallback, errorCallback, "NotificationHub", "unregister", [options]);
+    exec(successCallback, errorCallback, "NotificationHub", "unregister", [notificationHubPath, connectionString, options]);
 };
 
 /**
