@@ -6,7 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+//import com.google.android.gcm.GCMRegistrar;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -17,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.String;
 import java.util.Iterator;
 
 public class NotificationHubPlugin extends CordovaPlugin {
@@ -47,9 +49,12 @@ public class NotificationHubPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
 
         boolean result = false;
+        String hubName = null;
+        String connectionString = null;
 
         Log.v(LOG_TAG, "execute: action=" + action);
 
+        // this will initialize the session, registering and listening for notifications
         if (INITIALIZE.equals(action)) {
             pushContext = callbackContext;
             JSONObject jo = null;
@@ -59,6 +64,19 @@ public class NotificationHubPlugin extends CordovaPlugin {
             try {
                 jo = data.getJSONObject(0).getJSONObject("android");
 
+                hubName = jo.getString("notificationHubPath");
+                connectionString = jo.getString("connectionString");
+
+                Log.v(LOG_TAG, "execute: notificationHubPath=" + hubName.toString());
+                Log.v(LOG_TAG, "execute: connectionString=" + connectionString.toString());
+
+                // get an instance of the messaging cloud
+                final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(cordova.getActivity());
+
+                // get an instance of the azure hub
+                final com.microsoft.windowsazure.messaging.NotificationHub hub =
+                        new com.microsoft.windowsazure.messaging.NotificationHub(hubName, connectionString, cordova.getActivity());
+
                 gWebView = this.webView;
                 Log.v(LOG_TAG, "execute: jo=" + jo.toString());
 
@@ -66,7 +84,16 @@ public class NotificationHubPlugin extends CordovaPlugin {
 
                 Log.v(LOG_TAG, "execute: senderID=" + gSenderID);
 
-                GCMRegistrar.register(getApplicationContext(), gSenderID);
+                // performs the actual registration
+                //GCMRegistrar.register(getApplicationContext(), gSenderID);
+                String gcmId = gcm.register(gSenderID);
+                Log.v(LOG_TAG, "gcmId=" + gcmId);
+
+                // register with the hub
+                NativeRegistration registrationInfo = hub.register(gcmId);
+                Log.v(LOG_TAG, "gcmId..getRegistrationId()=" + registrationInfo.getRegistrationId());
+                Log.v(LOG_TAG, "gcmId..getGCMRegistrationId()=" + registrationInfo.getGCMRegistrationId());
+
                 result = true;
             } catch (JSONException e) {
                 Log.e(LOG_TAG, "execute: Got JSON Exception " + e.getMessage());
@@ -93,7 +120,7 @@ public class NotificationHubPlugin extends CordovaPlugin {
                 editor.commit();
             }
 
-            if ( gCachedExtras != null) {
+            if (gCachedExtras != null) {
                 Log.v(LOG_TAG, "sending cached extras");
                 sendExtras(gCachedExtras);
                 gCachedExtras = null;
