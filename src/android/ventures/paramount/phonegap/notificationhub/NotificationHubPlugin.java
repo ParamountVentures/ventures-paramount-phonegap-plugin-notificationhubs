@@ -62,7 +62,7 @@ public class NotificationHubPlugin extends CordovaPlugin {
             Log.v(LOG_TAG, "execute: data=" + data.toString());
 
             try {
-                jo = data.getJSONObject(0).getJSONObject("android");
+                jo = data.getJSONObject(2).getJSONObject("android");
 
                 hubName = data.getString(0);
                 connectionString = data.getString(1);
@@ -134,9 +134,9 @@ public class NotificationHubPlugin extends CordovaPlugin {
 
             JSONObject jo = null;
             try {
-                jo = data.getJSONObject(0).getJSONObject("android");
-                hubName = jo.getString("notificationHubPath");
-                connectionString = jo.getString("connectionString");
+                jo = data.getJSONObject(2).getJSONObject("android");
+                hubName = data.getString(0);
+                connectionString = data.getString(1);
             } catch (JSONException e) {
                 Log.e(LOG_TAG, "execute: Got JSON Exception " + e.getMessage());
                 result = false;
