@@ -163,12 +163,14 @@ module.exports = {
      * This method will instantiate a new copy of the NotificationHub object
      * and start the registration process.
      *
-     * @param {Object} options
-     * @return {NotificationHub} instance
+     * @param {string} notificationHubPath The notification hub path (name).
+     * @param {string} connectionString The connection string.
+     * @param {string} options Platform specific additional parameters (optional).
+     * @return {NotificationHub} instance that can be monitored and cancelled.
      */
 
-    init: function(options) {
-        return new NotificationHub(options);
+    init: function(notificationHubPath, connectionString, options) {
+        return new NotificationHub(notificationHubPath, connectionString, options);
     },
 
     /**
