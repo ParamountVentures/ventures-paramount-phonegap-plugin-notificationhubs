@@ -150,7 +150,13 @@ public class NotificationHubPlugin extends CordovaPlugin {
             //final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(cordova.getActivity());
 
             //GCMRegistrar.unregister(getApplicationContext());
-            hub.unregister();
+            try {
+                hub.unregister();
+            } catch (Exception e) {
+                Log.e(LOG_TAG, "execute: Got General Exception " + e.getMessage());
+                result = false;
+                callbackContext.error(e.getMessage());
+            }
 
             Log.v(LOG_TAG, "UNREGISTER");
             result = true;
