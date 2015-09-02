@@ -67,8 +67,8 @@ public class NotificationHubPlugin extends CordovaPlugin {
                 hubName = data.getString(0);
                 connectionString = data.getString(1);
 
-                Log.v(LOG_TAG, "execute: notificationHubPath=" + hubName.toString());
-                Log.v(LOG_TAG, "execute: connectionString=" + connectionString.toString());
+                Log.v(LOG_TAG, "execute: notificationHubPath=" + hubName);
+                Log.v(LOG_TAG, "execute: connectionString=" + connectionString);
 
                 // get an instance of the messaging cloud
                 final GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(cordova.getActivity());
