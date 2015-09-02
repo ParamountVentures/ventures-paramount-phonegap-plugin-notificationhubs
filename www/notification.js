@@ -23,6 +23,8 @@ var NotificationHub = function(notificationHubPath, connectionString, options) {
         'error': []
     };
 
+  console.log('Options: ' + JSON.stringify(options));
+
     // require options parameter
     if (typeof options === 'undefined') {
         throw new Error('The options argument is required.');
