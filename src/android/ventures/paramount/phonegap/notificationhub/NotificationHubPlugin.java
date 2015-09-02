@@ -99,6 +99,10 @@ public class NotificationHubPlugin extends CordovaPlugin {
                 Log.e(LOG_TAG, "execute: Got JSON Exception " + e.getMessage());
                 result = false;
                 callbackContext.error(e.getMessage());
+            } catch (Exception e) {
+                Log.e(LOG_TAG, "execute: Got General Exception " + e.getMessage());
+                result = false;
+                callbackContext.error(e.getMessage());
             }
 
             if (jo != null) {
@@ -129,9 +133,15 @@ public class NotificationHubPlugin extends CordovaPlugin {
         } else if (UNREGISTER.equals(action)) {
 
             JSONObject jo = null;
-            jo = data.getJSONObject(0).getJSONObject("android");
-            hubName = jo.getString("notificationHubPath");
-            connectionString = jo.getString("connectionString");
+            try {
+                jo = data.getJSONObject(0).getJSONObject("android");
+                hubName = jo.getString("notificationHubPath");
+                connectionString = jo.getString("connectionString");
+            } catch (JSONException e) {
+                Log.e(LOG_TAG, "execute: Got JSON Exception " + e.getMessage());
+                result = false;
+                callbackContext.error(e.getMessage());
+            }
 
             final com.microsoft.windowsazure.messaging.NotificationHub hub =
                     new com.microsoft.windowsazure.messaging.NotificationHub(hubName, connectionString, cordova.getActivity());
