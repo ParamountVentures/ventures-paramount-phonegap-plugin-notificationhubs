@@ -1,13 +1,12 @@
 //
 //  AppDelegate+notification.m
-//  pushtest
 //
+//  Created by Steven Livingstone (steven@livz.org) on 03 Sept 2015.
 //  Created by Robert Easterday on 10/26/12.
-//
 //
 
 #import "AppDelegate+notification.h"
-#import "PushPlugin.h"
+#import "NotificationHubPlugin.h"
 #import <objc/runtime.h>
 
 static char launchNotificationKey;
@@ -53,12 +52,12 @@ static char launchNotificationKey;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    PushPlugin *pushHandler = [self getCommandInstance:@"PushNotification"];
+    NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
     [pushHandler didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    PushPlugin *pushHandler = [self getCommandInstance:@"PushNotification"];
+    NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
     [pushHandler didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
@@ -72,7 +71,7 @@ static char launchNotificationKey;
     }
 
     if (appState == UIApplicationStateActive) {
-        PushPlugin *pushHandler = [self getCommandInstance:@"PushNotification"];
+        NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
         pushHandler.notificationMessage = userInfo;
         pushHandler.isInline = YES;
         [pushHandler notificationReceived];
@@ -90,7 +89,7 @@ static char launchNotificationKey;
     application.applicationIconBadgeNumber = 0;
 
     if (self.launchNotification) {
-        PushPlugin *pushHandler = [self getCommandInstance:@"PushNotification"];
+        NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
         pushHandler.isInline = NO;
         pushHandler.notificationMessage = self.launchNotification;
         self.launchNotification = nil;

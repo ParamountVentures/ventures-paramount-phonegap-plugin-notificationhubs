@@ -23,9 +23,9 @@
  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "PushPlugin.h"
+#import "NotificationHubPlugin.h"
 
-@implementation PushPlugin
+@implementation NotificationHubPlugin
 
 @synthesize notificationMessage;
 @synthesize isInline;
@@ -45,7 +45,7 @@
 
 - (void)init:(CDVInvokedUrlCommand*)command;
 {
-    NSLog(@"Push Plugin register called");
+    NSLog(@"NotificationHub register called");
     self.callbackId = command.callbackId;
     
     NSMutableDictionary* options = [command.arguments objectAtIndex:0];
@@ -90,7 +90,7 @@
 #endif
     
     if (notificationTypes == UIRemoteNotificationTypeNone)
-        NSLog(@"PushPlugin.register: Push notification type is set to none");
+        NSLog(@"NotificationHub.register: NotificationHub notification type is set to none");
     
     isInline = NO;
     
@@ -113,7 +113,7 @@
 }
 
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"Push Plugin register success: %@", deviceToken);
+    NSLog(@"NotificationHub Plugin register success: %@", deviceToken);
     
     NSMutableDictionary *results = [NSMutableDictionary dictionary];
     NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""]
@@ -176,7 +176,7 @@
 
 - (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"Push Plugin register failed");
+    NSLog(@"NotificationHub Plugin register failed");
     [self failWithMessage:@"" withError:error];
 }
 
@@ -194,7 +194,7 @@
                 id aps = [notificationMessage objectForKey:@"aps"];
                 
                 for(id key in aps) {
-                    NSLog(@"Push Plugin key: %@", key);
+                    NSLog(@"NotificationHub Plugin key: %@", key);
                     id value = [aps objectForKey:key];
                     
                     if ([key isEqualToString:@"alert"]) {

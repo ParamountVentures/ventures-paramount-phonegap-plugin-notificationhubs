@@ -1,8 +1,8 @@
 //
 //  AppDelegate+notification.h
-//  pushtest
 //
-//  Created by Robert Easterday on 10/26/12.
+//  Created by Steven Livingstone (steven@livz.org) on 03 Sept 2015.
+//  Based on original by Robert Easterday on 10/26/12.
 //
 //
 
