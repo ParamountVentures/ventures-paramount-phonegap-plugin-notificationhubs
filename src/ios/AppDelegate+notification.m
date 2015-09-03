@@ -52,12 +52,12 @@ static char launchNotificationKey;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
+    NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHub"];
     [pushHandler didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
+    NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHub"];
     [pushHandler didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
@@ -71,7 +71,7 @@ static char launchNotificationKey;
     }
 
     if (appState == UIApplicationStateActive) {
-        NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
+        NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHub"];
         pushHandler.notificationMessage = userInfo;
         pushHandler.isInline = YES;
         [pushHandler notificationReceived];
@@ -89,7 +89,7 @@ static char launchNotificationKey;
     application.applicationIconBadgeNumber = 0;
 
     if (self.launchNotification) {
-        NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHubNotification"];
+        NotificationHubPlugin *pushHandler = [self getCommandInstance:@"NotificationHub"];
         pushHandler.isInline = NO;
         pushHandler.notificationMessage = self.launchNotification;
         self.launchNotification = nil;
