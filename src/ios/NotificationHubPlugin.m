@@ -48,7 +48,7 @@
     NSLog(@"NotificationHub register called");
     self.callbackId = command.callbackId;
     
-    NSMutableDictionary* options = [command.arguments objectAtIndex:0];
+    NSMutableDictionary* options = [command.arguments objectAtIndex:2];
     NSMutableDictionary* iosOptions = [options objectForKey:@"ios"];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
