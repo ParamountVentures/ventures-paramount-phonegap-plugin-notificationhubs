@@ -83,6 +83,9 @@
 		<header-file src="src/ios/AppDelegate+notification.h" />
 		<header-file src="src/ios/NotificationHubPlugin.h" />
 
+
+        <framework src="src/ios/WindowsAzureMessaging.framework" custom="true" />
+        <source-file src="src/ios/libWindowsAzureMessaging.a" framework="false" />
 	</platform>
 
   <!-- windows -->
