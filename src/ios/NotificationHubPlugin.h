@@ -40,6 +40,9 @@
 @property (nonatomic, copy) NSString *callbackId;
 @property (nonatomic, copy) NSString *notificationCallbackId;
 @property (nonatomic, copy) NSString *callback;
+@property (nonatomic, copy) NSString *notificationHubPath;
+@property (nonatomic, copy) NSString *connectionString;
+@property (nonatomic, copy) NSMutableDictionary* options;
 
 @property (nonatomic, strong) NSDictionary *notificationMessage;
 @property BOOL                          isInline;
