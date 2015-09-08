@@ -1,4 +1,4 @@
-cordova.define("ventures.paramount.phonegap.notificationhub.NotificationHub", function(require, exports, module) { /* global cordova:false */
+/* global cordova:false */
 
   /*!
    * Module dependencies.
@@ -183,4 +183,3 @@ cordova.define("ventures.paramount.phonegap.notificationhub.NotificationHub", fu
 
     NotificationHub: NotificationHub
   };
-});
