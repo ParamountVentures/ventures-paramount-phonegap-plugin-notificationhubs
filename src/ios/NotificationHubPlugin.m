@@ -274,8 +274,8 @@
 
 - (void)setApplicationIconBadgeNumber:(CDVInvokedUrlCommand *)command
 {
-    NSMutableDictionary* options = [command.arguments objectAtIndex:0];
-    int badge = [[options objectForKey:@"badge"] intValue] ?: 0;
+    NSMutableDictionary* badgeoptions = [command.arguments objectAtIndex:0];
+    int badge = [[badgeoptions objectForKey:@"badge"] intValue] ?: 0;
 
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badge];
 
