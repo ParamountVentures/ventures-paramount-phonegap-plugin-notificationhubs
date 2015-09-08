@@ -49,7 +49,7 @@
 
 - (void)init:(CDVInvokedUrlCommand*)command;
 {
-    NSLog(@"Push Plugin register called");
+    NSLog(@"NotificationHubPlugin register called");
     self.callbackId = command.callbackId;
 
     self.notificationHubPath = [command.arguments objectAtIndex:0]; // added
@@ -96,7 +96,7 @@
 #endif
 
     if (notificationTypes == UIRemoteNotificationTypeNone)
-        NSLog(@"PushPlugin.register: Push notification type is set to none");
+        NSLog(@"NotificationHubPlugin.register: Push notification type is set to none");
 
     isInline = NO;
 
@@ -119,7 +119,7 @@
 }
 
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"Push Plugin register success: %@", deviceToken);
+    NSLog(@"NotificationHubPlugin register success: %@", deviceToken);
 
     if (self.connectionString == nil || self.notificationHubPath == nil) {
         NSLog(@"The Connection String or Notification Hub Path have not been set.");
@@ -201,7 +201,7 @@
 
 - (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"Push Plugin register failed");
+    NSLog(@"NotificationHubPlugin register failed");
     [self failWithMessage:@"" withError:error];
 }
 
@@ -219,7 +219,7 @@
                 id aps = [notificationMessage objectForKey:@"aps"];
 
                 for(id key in aps) {
-                    NSLog(@"Push Plugin key: %@", key);
+                    NSLog(@"NotificationHubPlugin key: %@", key);
                     id value = [aps objectForKey:key];
 
                     if ([key isEqualToString:@"alert"]) {
