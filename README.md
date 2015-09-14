@@ -3,7 +3,7 @@
 A plugin based on the PhoneGap Push plugin adapted to work with 
 Azure Notification Hubs.
 
-To see a working exam please check:
+To see a working example please check:
 https://github.com/ParamountVentures/AzureNotificationHubsCrossPlatformDemo
 
 #Windows
