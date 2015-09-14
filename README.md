@@ -15,6 +15,7 @@ e.g.
 #Overview
 This plugin uses a combination of the official PushPlugin (for iOS and Android) and the Microsoft Open Technologies Notification Hub plugin for Windows. You need to check for the device and use the appropriate script as follows:
 
+
   if (device.platform == "windows") {
 
             // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
