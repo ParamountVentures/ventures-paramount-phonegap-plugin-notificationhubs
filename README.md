@@ -1,4 +1,4 @@
-#phonegap-plugin-notificationhub
+#ventures-paramount-phonegap-plugin-notificationhubs
 
 A plugin based on the PhoneGap Push plugin adapted to work with 
 Azure Notification Hubs.
