@@ -16,15 +16,15 @@ e.g.
 This plugin uses a combination of the official PushPlugin (for iOS and Android) and the Microsoft Open Technologies Notification Hub plugin for Windows. You need to check for the device and use the appropriate script as follows:
 
 
-  if (device.platform == "windows") {
+    var connectionString = 'STRING';
+    var notificationHubPath = 'STRING';
+    var tags = 'tag1,tag2,tag3';  // null for broadcast
 
-            // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
-            var connectionString = "STRING";
-            var notificationHubPath = "STRING";
+    if (device.platform == "windows") {
 
             var hub = new WindowsAzure.Messaging.NotificationHub(notificationHubPath, connectionString);
 
-            hub.registerApplicationAsync().then(function (result) {
+            hub.registerApplicationAsync(tags).then(function (result) {
                 console.log("Registration successful: " + result.registrationId);
             });
 
