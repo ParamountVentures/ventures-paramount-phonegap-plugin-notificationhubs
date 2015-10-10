@@ -165,7 +165,7 @@
      *
      * @param {string} notificationHubPath The notification hub path (name).
      * @param {string} connectionString The connection string.
-     * @param {string} tags Comma separated list of tags.
+     * @param {array} tags Comma separated list of tags.
      * @param {string} options Platform specific additional parameters (optional).
      * @return {NotificationHub} instance that can be monitored and cancelled.
      */

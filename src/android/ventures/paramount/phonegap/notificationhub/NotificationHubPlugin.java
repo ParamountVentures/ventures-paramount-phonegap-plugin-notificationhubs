@@ -63,14 +63,14 @@ public class NotificationHubPlugin extends CordovaPlugin {
             Log.v(LOG_TAG, "execute: data=" + data.toString());
 
             try {
-                jo = data.getJSONObject(2).getJSONObject("android");
+                jo = data.getJSONObject(3).getJSONObject("android");
 
                 hubName = data.getString(0);
                 connectionString = data.getString(1);
 
                 // get the tags
                 if (data.getString(2) != null) {
-                  tags = data.getString(2).split(",");
+                    tags = data.getString(2).substring(1, data.getString(2).length() - 1).replace("\"", "").split(",");
                 }
 
                 Log.v(LOG_TAG, "execute: notificationHubPath=" + hubName);
