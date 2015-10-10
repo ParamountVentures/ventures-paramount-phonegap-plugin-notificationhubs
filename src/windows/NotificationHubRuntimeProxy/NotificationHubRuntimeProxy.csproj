@@ -107,8 +107,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsAzure.Messaging.Managed">
-      <HintPath>..\windows8\packages\WindowsAzure.Messaging.Managed.0.1.7.6\lib\netcore45\Microsoft.WindowsAzure.Messaging.Managed.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAzure.Messaging.Managed, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAzure.Messaging.Managed.0.1.7.9\lib\netcore45\Microsoft.WindowsAzure.Messaging.Managed.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

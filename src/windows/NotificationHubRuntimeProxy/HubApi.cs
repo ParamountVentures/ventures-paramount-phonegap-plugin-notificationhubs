@@ -20,9 +20,9 @@ namespace NotificationHubRuntimeProxy
 {
     public sealed class HubApi
     {
-        public IAsyncOperation<string> RegisterNativeAsync(string notificationHubPath, string connectionString, string channelUri)
+        public IAsyncOperation<string> RegisterNativeAsync(string notificationHubPath, string connectionString, string channelUri, [System.Runtime.InteropServices.WindowsRuntime.ReadOnlyArrayAttribute] string[] tags)
         {
-            return this.RegisterNativeAsyncInternal(notificationHubPath, connectionString, channelUri).AsAsyncOperation();
+            return this.RegisterNativeAsyncInternal(notificationHubPath, connectionString, channelUri, tags).AsAsyncOperation();
         }
 
         public async void UnregisterNativeAsync(string notificationHubPath, string connectionString)
@@ -32,14 +32,13 @@ namespace NotificationHubRuntimeProxy
             await hub.UnregisterNativeAsync();
         }
 
-        private async Task<string> RegisterNativeAsyncInternal(string notificationHubPath, string connectionString, string channelUri)
+        private async Task<string> RegisterNativeAsyncInternal(string notificationHubPath, string connectionString, string channelUri, string[] tags)
         {           
             // Create the notification hub
             var hub = new Microsoft.WindowsAzure.Messaging.NotificationHub(notificationHubPath, connectionString);
 
             // Register with the Notification Hub, passing the push channel uri and the string array of tags
-            var registration = await hub.RegisterNativeAsync(channelUri);
-
+            var registration = await hub.RegisterNativeAsync(channelUri, tags);
             return registration.RegistrationId;
         }
     }

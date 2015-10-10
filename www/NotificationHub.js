@@ -49,7 +49,7 @@ var NotificationHub = function (notificationHubPath, connectionString, options) 
  * Asynchronously registers the device for native notifications.
  * http://msdn.microsoft.com/en-us/library/dn339332.aspx
  *
- * @param {Array} tags The tags (not supported currently).
+ * @param {Array} tags The tags.
  */
 NotificationHub.prototype.registerApplicationAsync = function (tags) {
     var me = this,
