@@ -36,6 +36,7 @@
 @synthesize callback;
 @synthesize notificationHubPath;    // added
 @synthesize connectionString;       // added
+@synthesize tags;                   // added
 @synthesize options;                // added
 
 
@@ -54,7 +55,8 @@
 
     self.notificationHubPath = [command.arguments objectAtIndex:0]; // added
     self.connectionString = [command.arguments objectAtIndex:1];    // added
-    self.options = [command.arguments objectAtIndex:2];             // modified
+    self.tags= [command.arguments objectAtIndex:2];    // added
+    self.options = [command.arguments objectAtIndex:3];             // modified
     NSMutableDictionary* iosOptions = [self.options objectForKey:@"ios"];   // modified
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
@@ -125,13 +127,17 @@
         NSLog(@"The Connection String or Notification Hub Path have not been set.");
         return;
     }
+    
+    if (self.tags != nil) {
+        NSLog(@"Tags %@", tags.description);
+    }
 
     // create an instance of the Azure Notification Hub
     SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:
                               self.connectionString notificationHubPath:self.notificationHubPath];
 
     // now register with notification hubs
-    [hub registerNativeWithDeviceToken:deviceToken tags:nil completion:^(NSError *error) {
+    [hub registerNativeWithDeviceToken:deviceToken tags:tags completion:^(NSError *error) {
         if (error != nil) {
             [self failWithMessage:@"" withError:error];
             return;

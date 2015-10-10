@@ -42,6 +42,7 @@
 @property (nonatomic, copy) NSString *callback;
 @property (nonatomic, copy) NSString *notificationHubPath;
 @property (nonatomic, copy) NSString *connectionString;
+@property (nonatomic, copy) NSSet *tags;
 @property (nonatomic, copy) NSMutableDictionary* options;
 
 @property (nonatomic, strong) NSDictionary *notificationMessage;
