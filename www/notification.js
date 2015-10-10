@@ -16,7 +16,7 @@
    * @param {string} options Platform specific additional parameters (optional).
    * @return {NotificationHub} instance that can be monitored and cancelled.
    */
-  var NotificationHub = function(notificationHubPath, connectionString, options) {
+  var NotificationHub = function(notificationHubPath, connectionString, tags, options) {
     this._handlers = {
       'registration': [],
       'notification': [],
@@ -63,7 +63,7 @@
 
     // wait at least one process tick to allow event subscriptions
     setTimeout(function() {
-      exec(success, fail, 'NotificationHub', 'init', [notificationHubPath, connectionString, options]);
+      exec(success, fail, 'NotificationHub', 'init', [notificationHubPath, connectionString, tags, options]);
     }, 10);
   };
 
@@ -165,12 +165,13 @@
      *
      * @param {string} notificationHubPath The notification hub path (name).
      * @param {string} connectionString The connection string.
+     * @param {string} tags Comma separated list of tags.
      * @param {string} options Platform specific additional parameters (optional).
      * @return {NotificationHub} instance that can be monitored and cancelled.
      */
 
-    init: function(notificationHubPath, connectionString, options) {
-      return new NotificationHub(notificationHubPath, connectionString, options);
+    init: function(notificationHubPath, connectionString, tags, options) {
+      return new NotificationHub(notificationHubPath, connectionString, tags, options);
     },
 
     /**

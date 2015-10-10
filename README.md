@@ -36,6 +36,7 @@ This plugin uses a combination of the official PushPlugin (for iOS and Android) 
             try {
                 var hub = NotificationHub.init(notificationHubPath,
                   connectionString,
+                  tags,
                   {
                       "android": {
                           "senderID": "0000000"

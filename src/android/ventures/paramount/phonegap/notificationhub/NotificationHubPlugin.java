@@ -51,6 +51,7 @@ public class NotificationHubPlugin extends CordovaPlugin {
         boolean result = false;
         String hubName = null;
         String connectionString = null;
+        String[] tags = null;
 
         Log.v(LOG_TAG, "execute: action=" + action);
 
@@ -67,7 +68,13 @@ public class NotificationHubPlugin extends CordovaPlugin {
                 hubName = data.getString(0);
                 connectionString = data.getString(1);
 
+                // get the tags
+                if (data.getString(2) != null) {
+                  tags = data.getString(2).split(",");
+                }
+
                 Log.v(LOG_TAG, "execute: notificationHubPath=" + hubName);
+                Log.v(LOG_TAG, "execute: tags=" + data.getString(2));
                 Log.v(LOG_TAG, "execute: connectionString=" + connectionString);
 
                 // get an instance of the messaging cloud
@@ -90,7 +97,7 @@ public class NotificationHubPlugin extends CordovaPlugin {
                 Log.v(LOG_TAG, "gcmId=" + gcmId);
 
                 // register with the hub
-                NativeRegistration registrationInfo = hub.register(gcmId);
+                NativeRegistration registrationInfo = hub.register(gcmId, tags);
                 Log.v(LOG_TAG, "gcmId..getRegistrationId()=" + registrationInfo.getRegistrationId());
                 Log.v(LOG_TAG, "gcmId..getGCMRegistrationId()=" + registrationInfo.getGCMRegistrationId());
 
