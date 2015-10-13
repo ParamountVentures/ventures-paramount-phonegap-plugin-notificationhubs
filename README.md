@@ -12,6 +12,17 @@ In the current version of Cordova (5.2.0) the Identity within the AppManifest is
 e.g. 
 &lt;Identity Name="MyPackage.Name" Publisher="CN=0000000-1111-2222-3333-444444444" Version="1.0.0.0" /> 
 
+##iOS Key Points##
+- Follow the steps to set up iOS provisioning
+
+    https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/
+    
+- Don’t try debugging push in simulator - device only for push notifications
+
+- The latest version of the messaging SDK for iOS can be found at:
+
+    https://github.com/Azure/azure-mobile-services/blob/master/CHANGELOG.ios.md#sdk-downloads
+    
 #Overview
 This plugin uses a combination of the official PushPlugin (for iOS and Android) and the Microsoft Open Technologies Notification Hub plugin for Windows. You need to check for the device and use the appropriate script as follows:
 
