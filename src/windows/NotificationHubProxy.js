@@ -54,6 +54,7 @@ module.exports = {
             Windows.Networking.PushNotifications.PushNotificationChannelManager.createPushNotificationChannelForApplicationAsync().then(function (channel) {
                 notificationChannel = channel;
                 notificationChannel.addEventListener('pushnotificationreceived', pushNotificationHandler);
+                notificationChannel.addEventListener('pushnotificationreceived', (window['pushnotificationreceivedGlobal'] || function(){ try{window.console.log(arguments);}catch(e){} }));
                 
                 return (new NotificationHubRuntimeProxy.HubApi()).registerNativeAsync(notificationHubPath, connectionString, channel.uri, tags);
             }).done(function (result) {
