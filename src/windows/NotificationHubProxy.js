@@ -44,7 +44,7 @@ module.exports = {
                             notification.notificationTypeName = "Badge";
                             break;
                     }
-                    pushNotificationCallback(notification);
+                    pushNotificationCallback(notification, e);
                 } catch (ex) {}
                 e.cancel = true;
             }
