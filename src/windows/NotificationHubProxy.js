@@ -61,7 +61,8 @@ module.exports = {
                 regInfo.registrationId = result;
                 regInfo.channelUri = notificationChannel.uri;
                 regInfo.notificationHubPath = notificationHubPath;
-
+                regInfo.event = 'registerApplication';
+                
                 success(regInfo);
             }, fail);
 
