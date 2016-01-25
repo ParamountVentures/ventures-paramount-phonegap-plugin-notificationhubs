@@ -55,10 +55,10 @@ NotificationHub.prototype.registerApplicationAsync = function (tags) {
     var me = this,
         globalNotificationHandlerName = 'NotificationHub_onNotificationReceivedGlobal';
     // global handler that will be called every time new notification is received
-    window[globalNotificationHandlerName] = function (msg) {
+    window[globalNotificationHandlerName] = function (msg, receivedData) {
         // if handler attached
         if (me.onPushNotificationReceived != null) {
-            me.onPushNotificationReceived(msg)
+            me.onPushNotificationReceived(msg, receivedData)
         }
     };
     
@@ -69,8 +69,6 @@ NotificationHub.prototype.registerApplicationAsync = function (tags) {
     	if (result && result.event == 'registerApplication') {
         	delete result.event; // not required
         	deferral.resolve(result);
-        } else { //push notification
-    		    window[globalNotificationHandlerName](result);
         }
     },
 
