@@ -69,8 +69,6 @@ NotificationHub.prototype.registerApplicationAsync = function (tags) {
     	if (result && result.event == 'registerApplication') {
         	delete result.event; // not required
         	deferral.resolve(result);
-        } else { //push notification
-            window[globalNotificationHandlerName](result);
         }
     },
 
