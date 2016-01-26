@@ -43,6 +43,10 @@ module.exports = {
                             notification = e.badgeNotification.content;
                             notification.notificationTypeName = "Badge";
                             break;
+                        case notificationType.raw:
+                            notification = e.rawNotification.content;
+                            notification.notificationTypeName = "Raw";
+                            break;
                     }
                     pushNotificationCallback(notification, e);
                 } catch (ex) {}
@@ -54,7 +58,6 @@ module.exports = {
             Windows.Networking.PushNotifications.PushNotificationChannelManager.createPushNotificationChannelForApplicationAsync().then(function (channel) {
                 notificationChannel = channel;
                 notificationChannel.addEventListener('pushnotificationreceived', pushNotificationHandler);
-                notificationChannel.addEventListener('pushnotificationreceived', (window['pushnotificationreceivedGlobal'] || function(){ try{window.console.log(arguments);}catch(e){} }));
                 
                 return (new NotificationHubRuntimeProxy.HubApi()).registerNativeAsync(notificationHubPath, connectionString, channel.uri, tags);
             }).done(function (result) {
