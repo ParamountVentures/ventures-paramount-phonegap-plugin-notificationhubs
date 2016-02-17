@@ -43,8 +43,12 @@ module.exports = {
                             notification = e.badgeNotification.content;
                             notification.notificationTypeName = "Badge";
                             break;
+                        case notificationType.raw:
+                            notification = e.rawNotification.content;
+                            notification.notificationTypeName = "Raw";
+                            break;
                     }
-                    pushNotificationCallback(notification);
+                    pushNotificationCallback(notification, e);
                 } catch (ex) {}
                 e.cancel = true;
             }
@@ -61,7 +65,8 @@ module.exports = {
                 regInfo.registrationId = result;
                 regInfo.channelUri = notificationChannel.uri;
                 regInfo.notificationHubPath = notificationHubPath;
-
+                regInfo.event = 'registerApplication';
+                
                 success(regInfo);
             }, fail);
 
